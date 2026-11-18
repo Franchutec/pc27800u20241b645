@@ -17,7 +17,7 @@ public class PriorityLevelPersistenceConverter implements AttributeConverter<Pri
 
     @Override
     public PriorityLevel convertToEntityAttribute(Integer dbData) {
-        return dbData == null ? null : PriorityLevel.valueOf(dbData);
+        return dbData == null ? null : new PriorityLevel(dbData);
     }
 
 }
