@@ -10,11 +10,11 @@ public class DeliveryOrder {
     private WarehouseId werehouseId;
     private DeliveryWindow deliveryWindow;
     private PackageLoad packageLoad;
-    private Integer priorityLevel;
+    private PriorityLevel priorityLevel;
     private DeliveryStatus status;
     private String deliveryNotes;
 
-    public DeliveryOrder(Long id, DeliveryCode deliveryCode, WarehouseId werehouseId, DeliveryWindow deliveryWindow, PackageLoad packageLoad, Integer priorityLevel, DeliveryStatus status, String deliveryNotes) {
+    public DeliveryOrder(Long id, DeliveryCode deliveryCode, WarehouseId werehouseId, DeliveryWindow deliveryWindow, PackageLoad packageLoad, PriorityLevel priorityLevel, DeliveryStatus status, String deliveryNotes) {
         this.id = id;
         this.deliveryCode = deliveryCode;
         this.werehouseId = werehouseId;
@@ -25,7 +25,7 @@ public class DeliveryOrder {
         this.deliveryNotes = deliveryNotes;
     }
 
-    public DeliveryOrder(DeliveryCode deliveryCode, WarehouseId werehouseId, DeliveryWindow deliveryWindow, PackageLoad packageLoad, Integer priorityLevel, String deliveryNotes) {
+    public DeliveryOrder(DeliveryCode deliveryCode, WarehouseId werehouseId, DeliveryWindow deliveryWindow, PackageLoad packageLoad, PriorityLevel priorityLevel, String deliveryNotes) {
         this.deliveryCode = deliveryCode;
         this.werehouseId = werehouseId;
         this.deliveryWindow = deliveryWindow;
@@ -54,7 +54,7 @@ public class DeliveryOrder {
         return packageLoad;
     }
 
-    public Integer getPriorityLevel() {
+    public PriorityLevel getPriorityLevel() {
         return priorityLevel;
     }
 
