@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface DeliveryOrdersRepository {
     Optional<DeliveryOrder> findById(Long id);
-    DeliveryWindow save(DeliveryOrder deliveryOrder);
+    DeliveryOrder save(DeliveryOrder deliveryOrder);
     boolean existsById(Long id);
-    boolean existsDeliveryCode(DeliveryCode deliveryCode);
+    boolean existsByDeliveryCode(DeliveryCode deliveryCode);
     Optional<DeliveryOrder> findByDeliveryCode(DeliveryCode deliveryCode);
     List<DeliveryOrder> findAll();
 }

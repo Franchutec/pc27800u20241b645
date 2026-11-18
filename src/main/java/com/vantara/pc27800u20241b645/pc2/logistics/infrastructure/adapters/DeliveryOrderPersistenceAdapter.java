@@ -1,6 +1,10 @@
 package com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.adapters;
 
+import com.vantara.pc27800u20241b645.pc2.logistics.domain.model.aggregates.DeliveryOrder;
+import com.vantara.pc27800u20241b645.pc2.logistics.domain.model.valueobjects.DeliveryCode;
 import com.vantara.pc27800u20241b645.pc2.logistics.domain.repositories.DeliveryOrdersRepository;
+import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.entities.DeliveryOrderPersistenceEntity;
+import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.mappers.DeliveryOrderPersistenceMapper;
 import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.repositories.DeliveryOrderJpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,50 +17,50 @@ public class DeliveryOrderPersistenceAdapter implements DeliveryOrdersRepository
 
     private final DeliveryOrderJpaRepository deliveryOrderJpaRepository;
 
-    public ClaimPersistenceAdapter(ClaimJpaRepository claimJpaRepository) {
-        this.claimJpaRepository = claimJpaRepository;
+    public DeliveryOrderPersistenceAdapter(DeliveryOrderJpaRepository deliveryOrderJpaRepository) {
+        this.deliveryOrderJpaRepository = deliveryOrderJpaRepository;
     }
 
     @Override
-    public Optional<Claim> findById(Long id) {
-        return claimJpaRepository.findById(id)
-                .map(ClaimPersistenceMapper::toDomain);
+    public Optional<DeliveryOrder> findById(Long id) {
+        return deliveryOrderJpaRepository.findById(id)
+                .map(DeliveryOrderPersistenceMapper::toDomain);
     }
 
     @Override
-    public List<Claim> findAll() {
-        return claimJpaRepository.findAll()
+    public List<DeliveryOrder> findAll() {
+        return deliveryOrderJpaRepository.findAll()
                 .stream()
-                .map(ClaimPersistenceMapper::toDomain)
+                .map(DeliveryOrderPersistenceMapper::toDomain)
                 .toList();
     }
 
     @Override
-    public Claim save(Claim claim) {
-        ClaimPersistenceEntity entity =
-                ClaimPersistenceMapper.toEntity(claim);
+    public DeliveryOrder save(DeliveryOrder deliveryOrder) {
+        DeliveryOrderPersistenceEntity entity =
+                DeliveryOrderPersistenceMapper.toEntity(deliveryOrder);
 
-        ClaimPersistenceEntity savedEntity =
-                claimJpaRepository.save(entity);
+        DeliveryOrderPersistenceEntity savedEntity =
+                deliveryOrderJpaRepository.save(entity);
 
-        return ClaimPersistenceMapper.toDomain(savedEntity);
+        return DeliveryOrderPersistenceMapper.toDomain(savedEntity);
     }
 
     @Override
     public boolean existsById(Long id) {
-        return claimJpaRepository.existsById(id);
+        return deliveryOrderJpaRepository.existsById(id);
     }
 
     @Override
-    public boolean existsByLemonadeIdentifier(
-            LemonadeIdentifier lemonadeIdentifier) {
-        return claimJpaRepository.existsByClaimIdentifier(lemonadeIdentifier);
+    public boolean existsByDeliveryCode(
+            DeliveryCode deliveryCode) {
+        return deliveryOrderJpaRepository.existsByDeliveryCode(deliveryCode);
     }
 
     @Override
-    public Optional<Claim> findByLemonadeIdentifier(
-            LemonadeIdentifier lemonadeIdentifier) {
-        return claimJpaRepository.findByClaimIdentifier(lemonadeIdentifier)
-                .map(ClaimPersistenceMapper::toDomain);
+    public Optional<DeliveryOrder> findByDeliveryCode(
+            DeliveryCode deliveryCode) {
+        return deliveryOrderJpaRepository.findByDeliveryCode(deliveryCode)
+                .map(DeliveryOrderPersistenceMapper::toDomain);
     }
 }
