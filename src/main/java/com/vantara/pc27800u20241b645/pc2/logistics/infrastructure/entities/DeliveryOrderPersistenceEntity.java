@@ -3,8 +3,10 @@ package com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.entities;
 
 import com.vantara.pc27800u20241b645.pc2.logistics.domain.model.valueobjects.DeliveryCode;
 import com.vantara.pc27800u20241b645.pc2.logistics.domain.model.valueobjects.DeliveryStatus;
+import com.vantara.pc27800u20241b645.pc2.logistics.domain.model.valueobjects.PriorityLevel;
 import com.vantara.pc27800u20241b645.pc2.logistics.domain.model.valueobjects.WarehouseId;
 import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.converters.DeliveryCodePersistenceConverter;
+import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.converters.PriorityLevelPersistenceConverter;
 import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.converters.WarehouseIdPersistenceConverter;
 import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.embbedables.DeliveryWindowPersistenceEmbbedable;
 import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.embbedables.PackageLoadPersistenceEmbbedable;
@@ -32,8 +34,11 @@ public class DeliveryOrderPersistenceEntity extends AuditableAbstractPersistence
     private DeliveryWindowPersistenceEmbbedable deliveryWindow;
 
     @Embedded
-    private PackageLoadPersistenceEmbbedable claimedAmount;
+    private PackageLoadPersistenceEmbbedable packageLoad;
 
+    @Convert(converter = PriorityLevelPersistenceConverter.class)
+    @Column(name = "priority_leve", nullable = false, unique = true)
+    private PriorityLevel priorityLevel;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

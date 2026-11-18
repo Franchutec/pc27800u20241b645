@@ -1,6 +1,7 @@
 package com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.adapters;
 
 import com.vantara.pc27800u20241b645.pc2.logistics.domain.repositories.DeliveryOrdersRepository;
+import com.vantara.pc27800u20241b645.pc2.logistics.infrastructure.repositories.DeliveryOrderJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
